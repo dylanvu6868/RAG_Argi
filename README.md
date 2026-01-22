@@ -77,13 +77,31 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-#### Step 4: Start Qdrant
+#### Step 4: Configure Qdrant
+
+**Option A: Use Qdrant Cloud (Recommended)**
+
+1. Sign up at https://cloud.qdrant.io
+2. Create a cluster and get your URL and API key
+3. Update `.env` file:
+```env
+QDRANT_URL=https://your-cluster.cloud.qdrant.io:6333
+QDRANT_API_KEY=your-api-key-here
+```
+
+**Option B: Run Qdrant Locally (Docker)**
 
 ```bash
 docker run -d -p 6333:6333 -p 6334:6334 \
   -v $(pwd)/data/qdrant_storage:/qdrant/storage \
   --name qdrant_agriculture \
   qdrant/qdrant
+```
+
+Update `.env` file:
+```env
+QDRANT_URL=http://localhost:6333
+QDRANT_API_KEY=  # Leave empty for local
 ```
 
 #### Step 5: Install Ollama and Vietnamese model
