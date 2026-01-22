@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # RAG System - Vietnamese PDF Q&A
 
 Hệ thống RAG (Retrieval-Augmented Generation) với Hybrid Search cho tài liệu PDF tiếng Việt.
@@ -180,3 +181,6 @@ Mọi đóng góp đều được hoan nghênh! Vui lòng:
 - **Qdrant**: https://qdrant.tech
 - **LangChain**: https://langchain.com
 - **Vietnamese LLM**: Tuanpham/t-visstar-7b
+=======
+# RAG_Argi
+>>>>>>> a2a4ad1c7622a922b7d0e7b86c7cb1e1151c9a91
