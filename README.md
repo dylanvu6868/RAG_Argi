@@ -31,50 +31,15 @@ This system supports farmers and agricultural experts in finding information abo
 
 ## 🏗️ System Architecture
 
-```
-┌──────────────────────┐
-│  Upload Documents    │
-│  (PDFs about rice    │
-│   diseases, guides)  │
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│  Process & Chunk     │
-│  (Character-based    │
-│   chunking)          │
-└──────────┬───────────┘
-           │
-     ┌─────┴─────┐
-     ▼           ▼
-┌─────────┐  ┌─────────┐
-│ Qdrant  │  │  BM25   │
-│ Vector  │  │ Index   │
-│  Store  │  │(Keyword)│
-└────┬────┘  └────┬────┘
-     │            │
-     │   Query    │
-     ▼            ▼
-     └─────┬──────┘
-           │
-           ▼
-    ┌──────────────┐
-    │Hybrid Search │
-    │  (Semantic   │
-    │  + Keyword)  │
-    └──────┬───────┘
-           │
-           ▼
-    ┌──────────────┐
-    │   Ollama     │
-    │  LLM Model   │
-    │ (Vietnamese) │
-    └──────┬───────┘
-           │
-           ▼
-    Answer about rice
-    diseases/agriculture
-```
+![RAG System Architecture](./architecture.png)
+
+The system follows a hybrid search approach combining semantic and keyword-based retrieval:
+
+1. **PDF Processing**: Documents are uploaded and chunked into manageable segments
+2. **Dual Indexing**: Text is indexed in both Qdrant (vector/semantic) and BM25 (keyword)
+3. **Hybrid Search**: User queries trigger both search methods simultaneously
+4. **RRF Fusion**: Results are merged using Reciprocal Rank Fusion for optimal relevance
+5. **LLM Generation**: Retrieved context is sent to Ollama (Vietnamese model) for answer generation
 
 ## 🚀 Installation
 
