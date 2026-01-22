@@ -1,0 +1,16 @@
+streamlit==1.31.0
+langchain==0.1.16
+langchain-community==0.0.32
+langchain-text-splitters==0.0.1
+langchain-openai==0.1.3
+langchain-google-genai==1.0.1
+google-generativeai==0.3.2
+pypdf==3.0.1
+qdrant-client
+langchain-qdrant
+sentence-transformers==2.2.21
+rank-bm25==0.2.2
+openai==1.12.0
+python-dotenv==1.0.1
+torch==2.2.0
+transformers==4.37.2
