@@ -1,46 +1,46 @@
-# RAG Hệ Thống Hỗ Trợ Nông Nghiệp - Chẩn Đoán Bệnh Lúa
+# Agricultural Support RAG System - Rice Disease Diagnosis
 
-Hệ thống RAG (Retrieval-Augmented Generation) với Hybrid Search cho tài liệu chuyên ngành nông nghiệp và bệnh lúa tiếng Việt.
+A RAG (Retrieval-Augmented Generation) system with Hybrid Search for Vietnamese agricultural documents and rice disease diagnosis.
 
-## 🌾 Giới thiệu
+## 🌾 Introduction
 
-Hệ thống hỗ trợ nông dân và chuyên gia nông nghiệp tra cứu thông tin về:
-- **Bệnh hại lúa**: Triệu chứng, nguyên nhân, biện pháp phòng trị
-- **Kỹ thuật canh tác**: Cẩm nang trồng trọt, quy trình sản xuất
-- **Giải pháp nông nghiệp**: Tư vấn kỹ thuật dựa trên tài liệu chuyên môn
+This system supports farmers and agricultural experts in finding information about:
+- **Rice Diseases**: Symptoms, causes, and treatment methods
+- **Cultivation Techniques**: Growing guides and production processes
+- **Agricultural Solutions**: Technical advice based on professional documents
 
-## ✨ Tính năng
+## ✨ Features
 
-- 🔍 **Hybrid Search**: Kết hợp tìm kiếm ngữ nghĩa + từ khóa cho độ chính xác cao
-- 🤖 **LLM Tiếng Việt**: Trả lời tự nhiên bằng tiếng Việt (Ollama + Tuanpham/t-visstar-7b)
-- 📚 **Tra cứu tài liệu**: Upload PDF về bệnh lúa, cẩm nang trồng trọt
-- 📊 **Vector Database**: Qdrant - tìm kiếm nhanh, chính xác
-- 🎨 **Giao diện đơn giản**: Streamlit - dễ sử dụng cho nông dân
+- 🔍 **Hybrid Search**: Combines semantic + keyword search for high accuracy
+- 🤖 **Vietnamese LLM**: Natural Vietnamese responses (Ollama + Tuanpham/t-visstar-7b)
+- 📚 **Document Search**: Upload PDFs about rice diseases and cultivation guides
+- 📊 **Vector Database**: Qdrant - fast and accurate search
+- 🎨 **Simple Interface**: Streamlit - easy for farmers to use
 
-## 🎯 Ứng dụng thực tế
+## 🎯 Real-world Applications
 
-### Cho nông dân:
-- Tra cứu triệu chứng bệnh lúa từ mô tả
-- Nhận hướng dẫn phòng trị cụ thể
-- Học kỹ thuật canh tác từ cẩm nang
+### For Farmers:
+- Search rice disease symptoms from descriptions
+- Get specific treatment instructions
+- Learn cultivation techniques from guides
 
-### Cho chuyên gia:
-- Tìm kiếm thông tin nhanh trong tài liệu chuyên môn
-- Tổng hợp kiến thức từ nhiều nguồn
-- Hỗ trợ tư vấn kỹ thuật
+### For Experts:
+- Quick information retrieval from professional documents
+- Knowledge aggregation from multiple sources
+- Technical consulting support
 
-## 🏗️ Kiến trúc hệ thống
+## 🏗️ System Architecture
 
 ```
 ┌──────────────────────┐
-│  Upload Tài liệu     │
-│  (PDF về bệnh lúa,   │
-│   cẩm nang...)       │
+│  Upload Documents    │
+│  (PDFs about rice    │
+│   diseases, guides)  │
 └──────────┬───────────┘
            │
            ▼
 ┌──────────────────────┐
-│  Xử lý & Phân đoạn   │
+│  Process & Chunk     │
 │  (Character-based    │
 │   chunking)          │
 └──────────┬───────────┘
@@ -53,7 +53,7 @@ Hệ thống hỗ trợ nông dân và chuyên gia nông nghiệp tra cứu thô
 │  Store  │  │(Keyword)│
 └────┬────┘  └────┬────┘
      │            │
-     │  Câu hỏi   │
+     │   Query    │
      ▼            ▼
      └─────┬──────┘
            │
@@ -72,29 +72,29 @@ Hệ thống hỗ trợ nông dân và chuyên gia nông nghiệp tra cứu thô
     └──────┬───────┘
            │
            ▼
-    Câu trả lời về
-    bệnh lúa/nông nghiệp
+    Answer about rice
+    diseases/agriculture
 ```
 
-## 🚀 Cài đặt
+## 🚀 Installation
 
-### Yêu cầu hệ thống
+### System Requirements
 
-- **Python**: 3.10 trở lên
-- **Docker**: Cho Qdrant vector database
+- **Python**: 3.10 or higher
+- **Docker**: For Qdrant vector database
 - **Ollama**: Local LLM runtime
-- **RAM**: Ít nhất 4GB (khuyến nghị 8GB)
+- **RAM**: At least 4GB (recommended 8GB)
 
-### Hướng dẫn cài đặt
+### Setup Guide
 
-#### Bước 1: Clone repository
+#### Step 1: Clone repository
 
 ```bash
 git clone https://github.com/dylanvu6868/RAG_Argi.git
 cd RAG_Argi
 ```
 
-#### Bước 2: Tạo môi trường ảo
+#### Step 2: Create virtual environment
 
 ```bash
 python -m venv .venv
@@ -106,13 +106,13 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-#### Bước 3: Cài đặt thư viện
+#### Step 3: Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-#### Bước 4: Khởi động Qdrant
+#### Step 4: Start Qdrant
 
 ```bash
 docker run -d -p 6333:6333 -p 6334:6334 \
@@ -121,70 +121,70 @@ docker run -d -p 6333:6333 -p 6334:6334 \
   qdrant/qdrant
 ```
 
-#### Bước 5: Cài đặt Ollama và model tiếng Việt
+#### Step 5: Install Ollama and Vietnamese model
 
 ```bash
-# Cài Ollama: https://ollama.com/download
+# Install Ollama: https://ollama.com/download
 
-# Pull model tiếng Việt
+# Pull Vietnamese model
 ollama pull Tuanpham/t-visstar-7b:latest
 ```
 
-#### Bước 6: Chạy ứng dụng
+#### Step 6: Run application
 
 ```bash
 streamlit run app.py
 ```
 
-Truy cập: **http://localhost:8501**
+Access: **http://localhost:8501**
 
-## 📖 Hướng dẫn sử dụng
+## 📖 User Guide
 
-### 1. Upload tài liệu
+### 1. Upload Documents
 
-- Kéo thả file PDF về **bệnh lúa**, **cẩm nang trồng trọt** vào giao diện
-- Hệ thống tự động xử lý và đánh index
-- Hỗ trợ nhiều file cùng lúc
+- Drag and drop PDF files about **rice diseases** or **cultivation guides**
+- System automatically processes and indexes
+- Supports multiple files at once
 
-### 2. Đặt câu hỏi
+### 2. Ask Questions
 
-**Ví dụ câu hỏi:**
-- "Triệu chứng bệnh đạo ôn lúa là gì?"
-- "Cách phòng trị bệnh khô vằn?"
-- "Lúa bị lá vàng, vết bệnh hình thoi là bệnh gì?"
-- "Thời điểm bón phân đạm tốt nhất?"
+**Example questions:**
+- "What are the symptoms of rice blast disease?"
+- "How to prevent brown spot disease?"
+- "Rice has yellow leaves with spindle-shaped spots, what disease is it?"
+- "Best time to apply nitrogen fertilizer?"
 
-### 3. Xem kết quả
+### 3. View Results
 
-- Câu trả lời chi tiết bằng tiếng Việt
-- Nguồn trích dẫn rõ ràng (tên file, số trang)
-- Lịch sử hội thoại để tham khảo
+- Detailed answers in Vietnamese
+- Clear source citations (filename, page number)
+- Conversation history for reference
 
-## ⚙️ Cấu hình
+## ⚙️ Configuration
 
-### File `.env`
+### `.env` File
 
 ```env
 QDRANT_URL=http://localhost:6333
-QDRANT_API_KEY=  # Để trống nếu dùng local
+QDRANT_API_KEY=  # Leave empty for local
 ```
 
-### File `config.py` - Tối ưu cho văn bản nông nghiệp
+### `config.py` - Optimized for Agricultural Texts
 
 ```python
-CHUNK_SIZE = 1000              # 1000 ký tự/chunk
-CHUNK_OVERLAP = 200            # Overlap để giữ ngữ cảnh
+CHUNK_SIZE = 1000              # 1000 characters per chunk
+CHUNK_OVERLAP = 200            # Overlap to preserve context
 OLLAMA_MODEL = "Tuanpham/t-visstar-7b:latest"
-LLM_TEMPERATURE = 0.3          # Thấp = câu trả lời tập trung
-SEARCH_TYPE = "hybrid"         # Kết hợp semantic + keyword
-TOP_K_RESULTS = 5              # Lấy 5 đoạn liên quan nhất
+LLM_TEMPERATURE = 0.3          # Low = focused answers
+SEARCH_TYPE = "hybrid"         # Combine semantic + keyword
+TOP_K_RESULTS = 5              # Retrieve top 5 relevant chunks
 ```
 
-## 🔧 Công nghệ
+## 🔧 Technology Stack
 
-| Thành phần | Công nghệ |
+| Component | Technology |
 |-----------|-----------|
-| **Giao diện** | Streamlit |
+| **Frontend** | Streamlit |
 | **LLM** | Ollama (Tuanpham/t-visstar-7b) |
 | **Vector DB** | Qdrant |
 | **Embeddings** | sentence-transformers/all-MiniLM-L6-v2 |
@@ -192,54 +192,54 @@ TOP_K_RESULTS = 5              # Lấy 5 đoạn liên quan nhất
 | **Keyword Search** | BM25Okapi |
 | **Fusion** | Reciprocal Rank Fusion (RRF) |
 
-## 📊 Hiệu suất
+## 📊 Performance
 
-- **Hybrid Search**: Độ chính xác tăng 15-20% so với chỉ dùng semantic
-- **Thời gian trả lời**: 3-5 giây (phụ thuộc cấu hình máy)
-- **Bộ nhớ**: ~2GB RAM (embedding model + LLM)
-- **Hỗ trợ**: Tiếng Việt chuyên ngành nông nghiệp
+- **Hybrid Search**: 15-20% accuracy improvement vs semantic-only
+- **Response Time**: 3-5 seconds (depends on hardware)
+- **Memory**: ~2GB RAM (embedding model + LLM)
+- **Language**: Vietnamese agricultural terminology support
 
-## 📁 Cấu trúc dự án
+## 📁 Project Structure
 
 ```
 RAG_Argi/
-├── app.py                    # Giao diện Streamlit
-├── rag_engine.py             # Logic RAG + Hybrid Search
-├── llm_handler.py            # Tích hợp Ollama
-├── config.py                 # Cấu hình hệ thống
-├── utils.py                  # Hàm tiện ích
+├── app.py                    # Streamlit UI
+├── rag_engine.py             # RAG logic + Hybrid Search
+├── llm_handler.py            # Ollama integration
+├── config.py                 # System configuration
+├── utils.py                  # Utility functions
 ├── requirements.txt          # Dependencies
-├── .env                      # Biến môi trường
+├── .env                      # Environment variables
 ├── .gitignore               # Git ignore
 └── data/
-    ├── uploaded_pdfs/        # Tài liệu nông nghiệp
+    ├── uploaded_pdfs/        # Agricultural documents
     ├── qdrant_db/           # Vector storage
     └── vector_database_debug/ # Debug info
 ```
 
-## 💡 Gợi ý tài liệu nên upload
+## 💡 Recommended Documents to Upload
 
-- Cẩm nang bệnh hại lúa
-- Quy trình sản xuất lúa theo VietGAP
-- Sổ tay kỹ thuật canh tác
-- Tài liệu về phân bón, thuốc trừ sâu
-- Hướng dẫn phòng trị dịch bệnh
+- Rice disease guides
+- VietGAP rice production processes
+- Cultivation technique handbooks
+- Fertilizer and pesticide documentation
+- Disease prevention guidelines
 
-## 🤝 Đóng góp
+## 🤝 Contributing
 
-Dự án mở cho cộng đồng nông nghiệp! Mọi đóng góp đều được hoan nghênh:
+Open for the agricultural community! All contributions welcome:
 1. Fork repository
-2. Tạo branch tính năng (`git checkout -b feature/NoiDung`)
-3. Commit thay đổi (`git commit -m 'Thêm tính năng NoiDung'`)
-4. Push lên branch (`git push origin feature/NoiDung`)
-5. Tạo Pull Request
+2. Create feature branch (`git checkout -b feature/NewFeature`)
+3. Commit changes (`git commit -m 'Add NewFeature'`)
+4. Push to branch (`git push origin feature/NewFeature`)
+5. Create Pull Request
 
-## 📞 Liên hệ & Hỗ trợ
+## 📞 Contact & Support
 
-- **GitHub Issues**: Báo lỗi hoặc đề xuất tính năng
+- **GitHub Issues**: Report bugs or suggest features
 - **Repository**: https://github.com/dylanvu6868/RAG_Argi
 
-## 🙏 Cảm ơn
+## 🙏 Acknowledgments
 
 - **Ollama**: https://ollama.com - Local LLM runtime
 - **Qdrant**: https://qdrant.tech - Vector database
@@ -248,5 +248,5 @@ Dự án mở cho cộng đồng nông nghiệp! Mọi đóng góp đều đư�
 
 ---
 
-**Phát triển bởi**: Dylan Vu  
-**Mục đích**: Hỗ trợ nông dân & chuyên gia nông nghiệp Việt Nam
+**Developed by**: Dylan Vu  
+**Purpose**: Supporting Vietnamese farmers & agricultural experts
